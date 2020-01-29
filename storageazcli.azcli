@@ -22,14 +22,28 @@ az group create `
 
 #Create the blank template
 $templateFile = "pnazuretemplate.json"
-$templateName = "parametertemplate"
-$storageName = "pnstorage1234"
+$templateName = "variabletemplate"
+$storagePrefix = "pnstorage"
 
-
+#Create COntainer with parameters passed
 az group deployment create `
     --name $templateName `
     --resource-group $rgName `
-    --template-file $templateFile
+    --template-file $templateFile `
+    --parameters storageName=$storageName storageSku='Standard_GRS'
 
+ #Create COntainer with parameters passed
+az group deployment create `
+    --name $templateName `
+    --resource-group $rgName `
+    --template-file $templateFile `
+    --parameters storageName=$storageName
+
+#Create container with variables
+az group deployment create `
+    --name $templateName `
+    --resource-group $rgName `
+    --template-file $templateFile `
+    --parameters storagePrefix=$storagePrefix
 #Delete group
 az group delete --name $rgName --no-wait --yes
