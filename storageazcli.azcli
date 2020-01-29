@@ -22,7 +22,9 @@ az group create `
 
 #Create the blank template
 $templateFile = "pnazuretemplate.json"
-$templateName = "resourcetemplate"
+$templateName = "parametertemplate"
+$storageName = "pnstorage1234"
+
 
 az group deployment create `
     --name $templateName `
